@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transportation System Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        pre {
+            background-color: #2e2e2e;
+            color: #f8f8f8;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 16px;
+            line-height: 1.5;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <pre>
+#include <iostream>
+#include <vector>
+#include <unordered_map>
+#include <set>
+#include <stack>
+#include <queue>
+#include <limits>
+#include <string>
+#include <algorithm>
+
+using namespace std;
+
+// ------------------------- Graph Class -------------------------
+class Graph {
+    unordered_map<string, vector<pair<string, double>>> adjList;
+
+public:
+    void addRoute(const string &from, const string &to, double distance) {
+        adjList[from].push_back({to, distance});
+        adjList[to].push_back({from, distance});  // Bidirectional routes
+    }
+
+    void displayRoutes() {
+        if (adjList.empty()) {
+            cout << "No routes available. Add some routes first.\n";
+            return;
+        }
+
+        cout << "\n--- Routes ---\n";
+        for (const auto &pair : adjList) {
+            cout << pair.first << " -> ";
+            for (const auto &neighbor : pair.second) {
+                cout << "(" << neighbor.first << ", " << neighbor.second << " km) ";
+            }
+            cout << endl;
+        }
+    }
+
+    // --------------------- Dijkstra's Algorithm ---------------------
+    void dijkstra(const string &source, const string &destination) {
+        if (adjList.find(source) == adjList.end() || adjList.find(destination) == adjList.end()) {
+            cout << "Source or destination node does not exist.\n";
+            return;
+        }
+
+        unordered_map<string, double> dist;
+        unordered_map<string, string> parent;
+        set<pair<double, string>> pq;
+
+        for (const auto &node : adjList) {
+            dist[node.first] = numeric_limits<double>::infinity();
+        }
+
+        dist[source] = 0.0;
+        pq.insert({0.0, source});
+
+        while (!pq.empty()) {
+            auto top = *pq.begin();
+            pq.erase(pq.begin());
+            string curNode = top.second;
+
+            if (curNode == destination) {
+                cout << "\nShortest Distance (Dijkstra): " << dist[destination] << " km\n";
+                cout << "Path: ";
+                stack<string> path;
+                string node = destination;
+                while (node != source) {
+                    path.push(node);
+                    node = parent[node];
+                }
+                path.push(source);
+                while (!path.empty()) {
+                    cout << path.top();
+                    path.pop();
+                    if (!path.empty()) cout << " -> ";
+                }
+                cout << endl;
+                return;
+            }
+
+            for (const auto &neighbor : adjList[curNode]) {
+                string nextNode = neighbor.first;
+                double weight = neighbor.second;
+
+                if (dist[curNode] + weight < dist[nextNode]) {
+                    pq.erase({dist[nextNode], nextNode});
+                    dist[nextNode] = dist[curNode] + weight;
+                    parent[nextNode] = curNode;
+                    pq.insert({dist[nextNode], nextNode});
+                }
+            }
+        }
+
+        cout << "No path found from " << source << " to " << destination << ".\n";
+    }
+
+    // --------------------- Depth-First Search (DFS) ---------------------
+    void dfs(const string &start) {
+        if (adjList.find(start) == adjList.end()) {
+            cout << "Starting node does not exist.\n";
+            return;
+        }
+
+        unordered_map<string, bool> visited;
+        stack<string> s;
+        s.push(start);
+
+        cout << "\nDFS Traversal: ";
+        while (!s.empty()) {
+            string node = s.top();
+            s.pop();
+
+            if (!visited[node]) {
+                cout << node << " ";
+                visited[node] = true;
+            }
+
+            for (const auto &neighbor : adjList[node]) {
+                if (!visited[neighbor.first]) {
+                    s.push(neighbor.first);
+                }
+            }
+        }
+        cout << endl;
+    }
+
+    // --------------------- Breadth-First Search (BFS) ---------------------
+    void bfs(const string &start) {
+        if (adjList.find(start) == adjList.end()) {
+            cout << "Starting node does not exist.\n";
+            return;
+        }
+
+        unordered_map<string, bool> visited;
+        queue<string> q;
+        q.push(start);
+
+        cout << "\nBFS Traversal: ";
+        while (!q.empty()) {
+            string node = q.front();
+            q.pop();
+
+            if (!visited[node]) {
+                cout << node << " ";
+                visited[node] = true;
+            }
+
+            for (const auto &neighbor : adjList[node]) {
+                if (!visited[neighbor.first]) {
+                    q.push(neighbor.first);
+                }
+            }
+        }
+        cout << endl;
+    }
+};
+
+// --------------------- Heap Sort ---------------------
+void heapify(vector<double> &arr, int n, int i) {
+    int largest = i;
+    int left = 2 * i + 1;
+    int right = 2 * i + 2;
+
+    if (left < n && arr[left] > arr[largest]) largest = left;
+    if (right < n && arr[right] > arr[largest]) largest = right;
+
+    if (largest != i) {
+        swap(arr[i], arr[largest]);
+        heapify(arr, n, largest);
+    }
+}
+
+void heapSort(vector<double> &arr) {
+    int n = arr.size();
+
+    for (int i = n / 2 - 1; i >= 0; i--)
+        heapify(arr, n, i);
+
+    for (int i = n - 1; i > 0; i--) {
+        swap(arr[0], arr[i]);
+        heapify(arr, i, 0);
+    }
+}
+
+// --------------------- Rabin-Karp Algorithm ---------------------
+bool rabinKarp(const string &text, const string &pattern, int prime = 101) {
+    int n = text.size(), m = pattern.size();
+    if (m > n) return false;
+
+    const int base = 256;
+    int hashPattern = 0, hashText = 0, h = 1;
+
+    for (int i = 0; i < m - 1; i++) h = (h * base) % prime;
+
+    for (int i = 0; i < m; i++) {
+        hashPattern = (hashPattern * base + pattern[i]) % prime;
+        hashText = (hashText * base + text[i]) % prime;
+    }
+
+    for (int i = 0; i <= n - m; i++) {
+        if (hashPattern == hashText) {
+            if (text.substr(i, m) == pattern) return true;
+        }
+
+        if (i < n - m) {
+            hashText = (base * (hashText - text[i] * h) + text[i + m]) % prime;
+            if (hashText < 0) hashText += prime;
+        }
+    }
+    return false;
+}
+
+// ------------------------- Main Program -------------------------
+int main() {
+    Graph routeGraph;
+
+    int choice;
+    do {
+        cout << "\n--- Graph Operations Menu ---\n";
+        cout << "1. Add Route\n";
+        cout << "2. Display Routes\n";
+        cout << "3. Find Shortest Route (Dijkstra)\n";
+        cout << "4. Depth-First Search (DFS)\n";
+        cout << "5. Breadth-First Search (BFS)\n";
+        cout << "6. Sort Distances (Heap Sort)\n";
+        cout << "7. Substring Search (Rabin-Karp)\n";
+        cout << "8. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1: {
+                string origin, destination;
+                double distance;
+                cout << "Enter Origin: ";
+                cin.ignore();
+                getline(cin, origin);
+                cout << "Enter Destination: ";
+                getline(cin, destination);
+                cout << "Enter Distance (in km): ";
+                cin >> distance;
+                routeGraph.addRoute(origin, destination, distance);
+                cout << "Route added successfully.\n";
+                break;
+            }
+            case 2:
+                routeGraph.displayRoutes();
+                break;
+
+            case 3: {
+                string source, destination;
+                cout << "Enter Source: ";
+                cin.ignore();
+                getline(cin, source);
+                cout << "Enter Destination: ";
+                getline(cin, destination);
+                routeGraph.dijkstra(source, destination);
+                break;
+            }
+            case 4: {
+                string start;
+                cout << "Enter Starting Node for DFS: ";
+                cin.ignore();
+                getline(cin, start);
+                routeGraph.dfs(start);
+                break;
+            }
+            case 5: {
+                string start;
+                cout << "Enter Starting Node for BFS: ";
+                cin.ignore();
+                getline(cin, start);
+                routeGraph.bfs(start);
+                break;
+            }
+            case 6: {
+                int n;
+                cout << "Enter number of distances: ";
+                cin >> n;
+                vector<double> distances(n);
+                cout << "Enter distances: ";
+                for (int i = 0; i < n; i++) cin >> distances[i];
+                heapSort(distances);
+                cout << "Sorted Distances: ";
+                for (double d : distances) cout << d << " ";
+                cout << endl;
+                break;
+            }
+            case 7: {
+                string text, pattern;
+                cout << "Enter Text: ";
+                cin.ignore();
+                getline(cin, text);
+                cout << "Enter Pattern to Search: ";
+                getline(cin, pattern);
+                if (rabinKarp(text, pattern)) {
+                    cout << "Pattern found in text.\n";
+                } else {
+                    cout << "Pattern not found.\n";
+                }
+                break;
+            }
+            case 8:
+                cout << "Exiting program. Goodbye!\n";
+                break;
+
+            default:
+                cout << "Invalid choice. Please try again.\n";
+        }
+    } while (choice != 8);
+
+    return 0;
+}
+    </pre>
+
+</body>
+</html>
