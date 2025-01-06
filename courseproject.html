@@ -16,13 +16,13 @@
         h1 {
             text-align: center;
             color: white;
-            background-color: #333333;
+            background-color: #8B0000;
             padding: 20px;
         }
         section {
             margin-bottom: 20px;
             padding: 15px;
-            background: #333333;
+            background: #8B0000;
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
@@ -36,39 +36,42 @@
     </style>
 </head>
 <body>
-
     <div class="container">
         <h1>Transportation Management System Features</h1>
-        <h2>1. Find Shortest Route (Dijkstra’s Algorithm):</h2>
-        <ul>
-            <li>Computes the shortest path between a specified source and destination using Dijkstra’s Algorithm.</li>
-            <li>Displays the shortest distance and the sequence of locations in the path.</li>
-            <li>If no path exists, it notifies the user.</li>
-            <li>Uses a priority queue (implemented with a set) to select the next closest node during the algorithm's execution.</li>
-        </ul>
-
-        <h2>2. Find Minimum Spanning Tree (Prim's Algorithm):</h2>
-        <ul>
-            <li>Uses Prim's Algorithm to calculate the Minimum Spanning Tree (MST) of the graph.</li>
-            <li>Outputs the edges included in the MST and their weights (distances).</li>
-            <li>Calculates the total weight of the MST, representing the minimum cost to connect all locations in the network.</li>
-        </ul>
-
-        <h2>3. Sort Distances (Merge Sort):</h2>
-        <ul>
-            <li>Takes a list of distances as input and sorts them in ascending order using Merge Sort.</li>
-            <li>Outputs the sorted distances.</li>
-            <li>Demonstrates a divide-and-conquer sorting algorithm.</li>
-        </ul>
-
-        <h2>4. Search Substring in Text (Knuth-Morris-Pratt Algorithm):</h2>
-        <ul>
-            <li>Implements the Knuth-Morris-Pratt (KMP) Algorithm to search for a substring (pattern) within a given text.</li>
-            <li>Outputs whether the pattern is found in the text.</li>
-            <li>Uses a preprocessing step to build a Longest Prefix Suffix (LPS) Table, improving search efficiency.</li>
-        </ul>
+        <section>
+            <h2>1. Find Shortest Route (Dijkstra’s Algorithm):</h2>
+            <ul>
+                <li>Computes the shortest path between a specified source and destination using Dijkstra’s Algorithm.</li>
+                <li>Displays the shortest distance and the sequence of locations in the path.</li>
+                <li>If no path exists, it notifies the user.</li>
+                <li>Uses a priority queue (implemented with a set) to select the next closest node during the algorithm's execution.</li>
+            </ul>
+        </section>
+        <section>
+            <h2>2. Find Minimum Spanning Tree (Prim's Algorithm):</h2>
+            <ul>
+                <li>Uses Prim's Algorithm to calculate the Minimum Spanning Tree (MST) of the graph.</li>
+                <li>Outputs the edges included in the MST and their weights (distances).</li>
+                <li>Calculates the total weight of the MST, representing the minimum cost to connect all locations in the network.</li>
+            </ul>
+        </section>
+        <section>
+            <h2>3. Sort Distances (Heap Sort):</h2>
+            <ul>
+                <li>Takes a list of distances as input and sorts them in ascending order using Heap Sort.</li>
+                <li>Outputs the sorted distances.</li>
+                <li>Heap Sort is an efficient, comparison-based sorting algorithm that uses a binary heap data structure.</li>
+            </ul>
+        </section>
+        <section>
+            <h2>4. Search Substring in Text (Rabin-Karp Algorithm):</h2>
+            <ul>
+                <li>Implements the Rabin-Karp Algorithm to search for a substring (pattern) within a given text.</li>
+                <li>Outputs whether the pattern is found in the text.</li>
+                <li>Uses hashing to find any one of a set of pattern strings in the text, making it efficient for multiple pattern searches.</li>
+            </ul>
+        </section>
     </div>
     <a href="codero.html">Link to Code</a>
-
 </body>
 </html>
