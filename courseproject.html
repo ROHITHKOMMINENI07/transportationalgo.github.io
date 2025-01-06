@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transportation Management System Features</title>
+    <style>
+        body {
+            font-family: 'Product Sans', Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #1a1a1a;
+            color: #eeeeee;
+        }
+        h1 {
+            text-align: center;
+            color: white;
+            background-color: #333333;
+            padding: 20px;
+        }
+        section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #333333;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+        h2 {
+            color: #ffffff;
+        }
+        p {
+            margin: 0 0 10px;
+            color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Transportation Management System Features</h1>
+        <h2>1. Find Shortest Route (Dijkstra’s Algorithm):</h2>
+        <ul>
+            <li>Computes the shortest path between a specified source and destination using Dijkstra’s Algorithm.</li>
+            <li>Displays the shortest distance and the sequence of locations in the path.</li>
+            <li>If no path exists, it notifies the user.</li>
+            <li>Uses a priority queue (implemented with a set) to select the next closest node during the algorithm's execution.</li>
+        </ul>
+
+        <h2>2. Find Minimum Spanning Tree (Prim's Algorithm):</h2>
+        <ul>
+            <li>Uses Prim's Algorithm to calculate the Minimum Spanning Tree (MST) of the graph.</li>
+            <li>Outputs the edges included in the MST and their weights (distances).</li>
+            <li>Calculates the total weight of the MST, representing the minimum cost to connect all locations in the network.</li>
+        </ul>
+
+        <h2>3. Sort Distances (Merge Sort):</h2>
+        <ul>
+            <li>Takes a list of distances as input and sorts them in ascending order using Merge Sort.</li>
+            <li>Outputs the sorted distances.</li>
+            <li>Demonstrates a divide-and-conquer sorting algorithm.</li>
+        </ul>
+
+        <h2>4. Search Substring in Text (Knuth-Morris-Pratt Algorithm):</h2>
+        <ul>
+            <li>Implements the Knuth-Morris-Pratt (KMP) Algorithm to search for a substring (pattern) within a given text.</li>
+            <li>Outputs whether the pattern is found in the text.</li>
+            <li>Uses a preprocessing step to build a Longest Prefix Suffix (LPS) Table, improving search efficiency.</li>
+        </ul>
+    </div>
+    <a href="codero.html">Link to Code</a>
+
+</body>
+</html>
