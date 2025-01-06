@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: #eeeeee;
+            line-height: 1.8;
+        }
+        header {
+            background: linear-gradient(135deg, #333333, #4d4d4d);
+            color: #ffffff;
+            text-align: center;
+            padding: 30px 10px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        header p {
+            font-size: 1em;
+            margin-top: 5px;
+        }
+        nav {
+            background-color: #333333;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2em;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            margin: 20px auto;
+            padding: 30px;
+            max-width: 100%;
+        }
+        section {
+            margin: 20px auto;
+            padding: 30px;
+            background-color: #333333;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+        h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: #ffffff;
+            border-bottom: 2px solid #4d4d4d;
+            padding-bottom: 5px;
+        }
+        p {
+            font-size: 1em;
+            margin-bottom: 15px;
+            color: #cccccc;
+        }
+        .list-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        .list-column {
+            flex: 1;
+            min-width: 200px;
+        }
+        ul {
+            margin: 15px 0;
+            padding-left: 20px;
+            color: #cccccc;
+        }
+        li {
+            margin-bottom: 10px;
+            color: #cccccc;
+        }
+        strong {
+            color: #ffffff;
+        }
+        .button-container {
+            margin: 40px 0;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        .course-project-button {
+            background: linear-gradient(135deg, #333333, #4d4d4d);
+            color: white;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+        .course-project-button:hover {
+            background: linear-gradient(135deg, #1a1a1a, #333333);
+        }
+        footer {
+            background-color: #333333;
+            color: #cccccc;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+            .container {
+                padding: 20px;
+            }
+            section {
+                padding: 20px;
+            }
+            .course-project-button {
+                font-size: 1em;
+                padding: 10px 20px;
+            }
+            .list-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Design and Analysis of Algorithms</h1>
+        <p>Welcome to our project portfolio! Embark on a journey with us where we explore the world of algorithms.</p>
+    </header>
+
+    <nav>
+        <a href="#introduction">Introduction</a>
+        <a href="#data-structures">Data Structures</a>
+        <a href="#applications">Applications</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="container">
+        <section id="introduction">
+            <h2>Course Introduction</h2>
+            <div>
+                <h3>What is the course about?</h3>
+                <p>The Design and Analysis of Algorithms course helps us understand how to design and evaluate algorithms to tackle problems effectively. We explore key concepts like time and space complexities, as well as various data structures and algorithms.</p>
+            </div>
+        </section>
+        
+        <section id="data-structures">
+            <h2>Studied Data Structures and Algorithms</h2>
+            <div class="list-container">
+                <div class="list-column">
+                    <h4>Data Structures:</h4>
+                    <ul>
+                        <li>Arrays</li>
+                        <li>Linked Lists</li>
+                        <li>Stacks</li>
+                        <li>Queues</li>
+                        <li>Heap</li>
+                        <li>Hash</li>
+                    </ul>
+                    <h4>Trees:</h4>
+                    <ul>
+                        <li>BST (Binary Search Tree)</li>
+                        <li>2-3 Tree</li>
+                        <li>AVL Trees</li>
+                        <li>Red-Black Trees</li>
+                        <li>Segment Trees</li>
+                        <li>Trie</li>
+                    </ul>
+                </div>
+                <div class="list-column">
+                    <h4>Graphs:</h4>
+                    <ul>
+                        <li>Graph Representations</li>
+                        <li>Traversal Techniques (BFS, DFS)</li>
+                    </ul>
+                    <h4>Sorting Techniques:</h4>
+                    <ul>
+                        <li>Quick Sort</li>
+                        <li>Merge Sort</li>
+                        <li>Heap Sort</li>
+                        <li>Selection Sort</li>
+                        <li>Bubble Sort</li>
+                        <li>Insertion Sort</li>
+                    </ul>
+                </div>
+                <div class="list-column">
+                    <h4>Graph Algorithms:</h4>
+                    <ul>
+                        <li>Dijkstra's Shortest Path</li>
+                        <li>Floyd's Algorithm</li>
+                        <li>Kruskal's Algorithm</li>
+                        <li>Warshall's Algorithm</li>
+                        <li>Prim's Minimum Spanning Tree</li>
+                        <li>Bellman-Ford Algorithm</li>
+                    </ul>
+                    <h4>String Search Algorithms:</h4>
+                    <ul>
+                        <li>Brute Force String Search</li>
+                        <li>Boyer-Moore</li>
+                        <li>KMP String Matching</li>
+                        <li>Rabin-Karp</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="applications">
+            <h2>Real-Time Applications</h2>
+            <div>
+                <h3>How do we connect the course with real-time applications?</h3>
+                <p>Algorithms are everywhere in our daily lives. Search engines use graph algorithms to show relevant results, and online shopping platforms use sorting and searching algorithms to suggest products. Transportation and logistics companies use algorithms to optimize routes and reduce costs. Financial institutions rely on algorithms for risk assessment and fraud detection.</p>
+            </div>
+        </section>
+    </div>
+
+    <div class="button-container">
+        <a href="courseproject.html" class="course-project-button">Explore Course Project</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Design and Analysis of Algorithms. All rights reserved.</p>
+        <p>
+            <a href="#introduction">Introduction</a> |
+            <a href="#data-structures">Data Structures</a> |
+            <a href="#applications">Applications</a> |
+            <a href="#contact">Contact</a>
+        </p>
+    </footer>
+</body>
+</html>
